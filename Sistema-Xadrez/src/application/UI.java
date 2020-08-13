@@ -2,6 +2,7 @@ package application;
 
 import chess.ChessPiece;
 
+// Prints the board
 public class UI {
 	public static void printBoard(ChessPiece[][] pieces) {
 		for (int i = 0; i < pieces.length; i++) {
@@ -14,6 +15,7 @@ public class UI {
 		System.out.println("  a b c d e f g h");
 	}
 	
+	// Checks if piece in matrix place is null
 	private static void printPiece(ChessPiece piece) {
 		if (piece == null) {
 			System.out.print("-");
