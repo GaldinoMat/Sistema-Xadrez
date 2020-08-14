@@ -22,6 +22,29 @@ public class ChessMatch {
 
 		return mat;
 	}
+	
+	public ChessPiece performChessMove(ChessPosition sourcePos, ChessPosition targetPos) {
+		Position source = sourcePos.toPosition();
+		Position target = targetPos.toPosition();
+		
+		validateSourcePos(source);
+		Piece capturedPiece = makeMove(source, target);
+		return (ChessPiece)capturedPiece;
+	}
+	
+	private Piece makeMove(Position source, Position target) {
+		Piece p = board.removePiece(source);
+		Piece capturedP = board.removePiece(target);
+		board.placePiece(p, target);
+		
+		return capturedP;
+	}
+
+	private void validateSourcePos(Position source) {
+		if (!board.thereIsAPiece(source)) {
+			throw new ChessException("There is no piece on source position");
+		}
+	}
 
 	// Places piece in matrix from chess coordinates
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
